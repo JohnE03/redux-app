@@ -5,7 +5,7 @@ function App() {
   const dispatcher = useDispatch();
 
   const state = useSelector((state) => {
-    if(state.state<=0) return 0;
+    if(state.counter<=0) return 0;
     return state.counter;
   });
 
