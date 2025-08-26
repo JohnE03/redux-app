@@ -22,6 +22,7 @@ const counterReducer = (state = initState, action) => {
         return {
         ...state,
         showCounter: action.payload
+        // or showCounter: !state.showCounter (don't pass a payload to dispatcher)
         };
     }
     //console.log(state);
