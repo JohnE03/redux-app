@@ -1,4 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {logOut} from './authSlice';
+import { act } from 'react';
 
 const initState = {
   counter: 0
@@ -10,7 +12,12 @@ const counterSlice = createSlice({ //must use these keys (can't change their nam
     initialState: initState,
     reducers: {
       increase: (state, action)=>{state.counter += action.payload},
-      decrease: (state, action)=>{state.counter += action.payload}
+      decrease: (state, action)=>{state.counter -= action.payload}
+    },
+    extraReducers: (builder) => { //telling counterSlice to also respond to actions defined outside of this slice
+      builder.addCase(logOut, (state, action) => {state.counter = 0; console.log(action);
+      })
+      
     }
 });
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 //import { useEffect, useCallback } from 'react';
 import {increase, decrease} from '../store/counterSlice'
@@ -63,6 +63,11 @@ function Counter() {
   //   return state;
   // }
 
+
+  useEffect(() => {
+    dispatcher(increase(3));
+  }, [dispatcher]);
+
   const logInOutHandler = () => {
     if(globalAuthState.isLoggedIn) {
       dispatcher(logOut());
@@ -81,7 +86,7 @@ function Counter() {
       <div className="counter">Counter: {globalState.counter.counter}</div>
         <div>
           <button id="increase" onClick ={ () => dispatcher(increase(5)) }>increase +</button>
-          <button id="decrease" onClick ={ () => dispatcher(decrease(-4)) }>decrease -</button>
+          <button id="decrease" onClick ={ () => dispatcher(decrease(4)) }>decrease -</button>
         </div>
       </>)
       }
