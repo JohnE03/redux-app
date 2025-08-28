@@ -1,4 +1,5 @@
 import counterSliceReducer from './counterSlice';
+import authSliceReducer from './authSlice';
 //import {createStore} from 'redux';
 import {configureStore} from '@reduxjs/toolkit';
 
@@ -6,6 +7,7 @@ import {configureStore} from '@reduxjs/toolkit';
 // createStore can't handle multiple reducers, so if we have multiple slices, we need to use configureStore from @reduxjs/toolkit
 
 const store = configureStore({
-    reducer: {counter: counterSliceReducer} //if we have multiple slices, we can add them here
+    reducer: {counter: counterSliceReducer, authenticator: authSliceReducer} //if we have multiple slices, we can add them here
 });
+
 export default store;
