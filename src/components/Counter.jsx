@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 //import { useEffect, useCallback } from 'react';
 import {increase, decrease} from '../store/counterSlice'
-import { toggle } from '../store/authSlice';
+import { logIn, logOut } from '../store/authSlice';
 
 function Counter() {
   const dispatcher = useDispatch(); //no need to import store and use store.dispatch
@@ -67,7 +67,7 @@ function Counter() {
     <div className="App">
       <h1>Hello Redux Basic</h1>
       {
-      globalAuthState.show &&
+      globalAuthState.isLoggedIn &&
       (<>
       <div className="counter">Counter: {globalCounterState.counter}</div>
         <div>
@@ -78,7 +78,8 @@ function Counter() {
       }
 
       <div>
-        <button className='btn' onClick={ () => dispatcher(toggle())}>Hide/Show counter number</button>
+        <button className='btn' onClick={ () => dispatcher(logIn())}>Login</button>
+        <button className='btn' onClick={ () => dispatcher(logOut())}>LogOut</button>
       </div>
     </div>
   );
