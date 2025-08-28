@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 //import { useEffect, useCallback } from 'react';
 import {increase, decrease} from '../store/counterSlice'

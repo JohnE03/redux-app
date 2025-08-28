@@ -1,6 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {logOut} from './authSlice';
-import { act } from 'react';
 
 const initState = {
   counter: 0
