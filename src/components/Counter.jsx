@@ -6,8 +6,8 @@ import { logIn, logOut } from '../store/authSlice';
 
 function Counter() {
   const dispatcher = useDispatch(); //no need to import store and use store.dispatch
-  const globalCounterState = useSelector((state) => state.counter); //now globalState is an object with counter and showCounter properties
-  const globalAuthState = useSelector((state) => state.authenticator);
+  const globalState = useSelector((state) => state); //now globalState is an object with counter and showCounter properties
+  const globalAuthState = globalState.authenticator;
   //no need to use useSelector twice
 
   // const state = useSelector((state) => {
@@ -63,13 +63,22 @@ function Counter() {
   //   return state;
   // }
 
+  const logInOutHandler = () => {
+    if(globalAuthState.isLoggedIn) {
+      dispatcher(logOut());
+    }
+    else {
+      dispatcher(logIn());
+    }
+  }
+
   return (
     <div className="App">
       <h1>Hello Redux Basic</h1>
       {
       globalAuthState.isLoggedIn &&
       (<>
-      <div className="counter">Counter: {globalCounterState.counter}</div>
+      <div className="counter">Counter: {globalState.counter.counter}</div>
         <div>
           <button id="increase" onClick ={ () => dispatcher(increase(5)) }>increase +</button>
           <button id="decrease" onClick ={ () => dispatcher(decrease(-4)) }>decrease -</button>
@@ -78,8 +87,7 @@ function Counter() {
       }
 
       <div>
-        <button className='btn' onClick={ () => dispatcher(logIn())}>Login</button>
-        <button className='btn' onClick={ () => dispatcher(logOut())}>LogOut</button>
+        <button className='btn' onClick={ () => logInOutHandler() }>{globalAuthState.isLoggedIn? "Logout": "Login"}</button>
       </div>
     </div>
   );
